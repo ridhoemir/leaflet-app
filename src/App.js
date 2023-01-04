@@ -7,9 +7,10 @@ import ReactLeafletKml from 'react-leaflet-kml';
 function App() {
   const [kml, setKml] = React.useState(null);
 
+  //using KML file
   React.useEffect(() => {
     fetch(
-      "/public/Cilacap-Rewulu-Boyolali.kml"
+      "https://raw.githubusercontent.com/ridhoemir/leaflet-app/main/public/Pipeline-Cilacap-Rewulu-Boyolali.kml"
     )
       .then((res) => res.text())
       .then((kmlText) => {
@@ -32,9 +33,6 @@ function App() {
     [-7.669998, 109.068449, "TB 16", "SKUN MUR BAUT"],
   ];
 
-  // const kmlText = "/public/Cilacap-Rewulu-Boyolali.kmz.kml";
-  // const parser = new DOMParser();
-  // const kml = parser.parseFromString(kmlText, "text/xml");
   return (
     <MapContainer
       center={[-7.701171, 109.025053]}
@@ -44,7 +42,7 @@ function App() {
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
-      {/* {position.map((pos, index) => (
+      {position.map((pos, index) => (
         <Marker key={index} position={[pos[0], pos[1]]}>
           <Popup>
             <h4>
@@ -61,7 +59,9 @@ function App() {
             </a>
           </Popup>
         </Marker>
-      ))} */}
+      ))}
+
+      {/* using kml file */}
       {kml && <ReactLeafletKml kml={kml} />}
     </MapContainer>
   );
